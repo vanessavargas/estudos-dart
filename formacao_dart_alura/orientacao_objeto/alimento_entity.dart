@@ -4,4 +4,8 @@ class Alimento {
   String cor;
 
   Alimento(this.nome, this.peso, this.cor);
+
+  void printAlimento() {
+    print('Este(a) $nome pesa $peso e é $cor');
+  }
 }
