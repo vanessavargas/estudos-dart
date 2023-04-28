@@ -3,8 +3,8 @@ import 'viajar_entity.dart';
 
 void main(List<String> arguments) {
   Viajar jalapao = Viajar(locomocao: Transporte.carro);
-  jalapao.aventura();
-  jalapao.aventura2();
+  jalapao.aventura(); //sem enum
+  jalapao.aventura2(); //com enum
 
   List<String> destinos = [
     'Jalapão',
@@ -31,6 +31,7 @@ void main(List<String> arguments) {
   };
   print(destinosDesejados.intersection(destinosVisitados));
 
+  //Map Literal
   Map<String, String> motivoMap = {
     'Jalapão': 'Natureza',
     'Califórnia': 'Arte',
@@ -40,6 +41,7 @@ void main(List<String> arguments) {
   };
   print(motivoMap);
 
+  //Map Construtor
   Map<String, dynamic> precoMap = {
     'Jalapão': 2380.00,
     'Califórnia': 'MUITO CARO',
@@ -69,4 +71,11 @@ void main(List<String> arguments) {
   Viajar chapada = Viajar(locomocao: Transporte.bicicleta);
   chapada.visitar();
   chapada.visitar();
+
+  chapada.visitas = 20;
+  print(chapada.visitas);
+  print(jalapao.numeroDeViagens);
+
+  jalapao.alterarViagens = 200;
+  print(jalapao.numeroDeViagens);
 }
