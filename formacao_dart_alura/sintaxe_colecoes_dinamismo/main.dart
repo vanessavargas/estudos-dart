@@ -48,4 +48,25 @@ void main(List<String> arguments) {
     'São Paulo': 'barato',
   };
   print(precoMap);
+
+//Variáveis Dynamic
+  var precoX = 1; //variavel do tipo num (int ou double)
+  print(precoX.runtimeType); //prova Real
+//x = 'frase'; -> vai brigar com a gente porque não podemos alterar a tipagem
+
+  dynamic precoY; //não sabemos o tipo
+  precoY = 1; //agora é um int
+  print(precoY.runtimeType);
+  precoY = 'frase'; //agora é um String
+  print(precoY.runtimeType);
+
+//Variáveis static
+  jalapao.visitar();
+  jalapao.visitar();
+  jalapao.visitar();
+
+  //e se eu for pra outro lugar?
+  Viajar chapada = Viajar(locomocao: Transporte.bicicleta);
+  chapada.visitar();
+  chapada.visitar();
 }
