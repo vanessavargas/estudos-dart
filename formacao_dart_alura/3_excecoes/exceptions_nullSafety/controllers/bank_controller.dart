@@ -1,3 +1,4 @@
+import '../exceptions/bank_controller_exceptions.dart';
 import '../models/account.dart';
 
 class BankController {
@@ -13,25 +14,33 @@ class BankController {
       required double amount}) {
     //verifica se o ID de remetente é válido
     if (!verifyId(idSender)) {
-      return false;
+      throw SenderIdInvalidException(idSender: idSender);
     }
 
     //verifica se o ID de destinatário é válido
     if (!verifyId(idReceiver)) {
-      return false;
+      throw ReceiverIdInvalidException(idReceiver: idReceiver);
     }
 
     Account accountSender = _database[idSender]!;
     Account accountReceiver = _database[idReceiver]!;
 
     //verifica se o remetente está autenticado
-    if (accountSender.balance < amount) {
-      return false;
+    if (!accountSender.isAuthenticated) {
+      throw SenderNotAuthenticatedException(idSender: idSender);
+    }
+
+    //verifica se o destinatário está autenticado
+    if (!accountReceiver.isAuthenticated) {
+      throw ReceiverNotAuthenticatedException(idReceiver: idReceiver);
     }
 
     //verifica se o remetente possui saldo suficiente
     if (accountSender.balance < amount) {
-      return false;
+      throw SenderBalanceLowerThanAmountException(
+          idSender: idSender,
+          balanceSender: accountSender.balance,
+          amount: amount);
     }
 
     //se tudo estiver certo, efetivar transação
